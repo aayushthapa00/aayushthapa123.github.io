@@ -1,0 +1,109 @@
+<html>
+<head>
+    <style>
+        body {
+            margin: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #quiz-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #question {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type='button'] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        input[type='button']:hover {
+            background-color: #45a049;
+        }
+
+        #score {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>Quiz</h1>
+        <div id="score">Score: <span id="myscore">0</span></div>
+        <div id="question">
+            <p id="myques">Question</p>
+        </div>
+        <div id="options">
+            <form name="myform">
+                <input name="opt1" class="option" type="button" value="Option 1" onclick="checkans(1)">
+                <input name="opt2" class="option" type="button" value="Option 2" onclick="checkans(2)">
+                <input name="opt3" class="option" type="button" value="Option 3" onclick="checkans(3)">
+                <input name="opt4" class="option" type="button" value="Option 4" onclick="checkans(4)">
+                <input name="btnnext" type="button" value="Next" onclick="increaseques()">
+            </form>
+        </div>
+    </div>
+    <script>
+            question = [
+            ["when was mukesh kayastha was death?", "2002", "2005", "2023", "2050", "3"],
+            ["who is father of the nation?", "ram", "2005", "2023", "2050", "3"],
+            ["what country has the highest life expectancy?", "monaco", "nepal", "india", "china", "1"],
+            ["which language has the more native speakers?","spanish","hindi","arabic","chinese","4"],
+        ]
+
+        a = 0;
+        score = 0;
+        loadquestion();
+
+        function loadquestion() {
+            document.getElementById('myscore').innerHTML = "Score: " + score;
+            document.getElementById('myques').innerHTML = question[a][0];
+            myform.opt1.value = "1. " + question[a][1];
+            myform.opt2.value = "2. " + question[a][2];
+            myform.opt3.value = "3. " + question[a][3];
+            myform.opt4.value = "4. " + question[a][4];
+        }
+
+        function increaseques() {
+            a = a + 1;
+            loadquestion();
+        }
+
+        function checkans(abs) {
+            if (abs == question[a][5]) {
+                alert("Right answer!");
+                score = score + 10;
+                document.getElementById('myscore').innerHTML = "Score: " + score;
+            } else {
+                alert("Wrong answer!");
+            }
+        }
+    </script>
+</body>
+</html>
+
